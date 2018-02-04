@@ -1,0 +1,19 @@
+{
+  "name": "bs-jsx-rewriter",
+  "version": "0.1.0",
+  "sources": [
+    "src",
+    {
+      "dir": "examples",
+      "type": "dev"
+    }
+  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+  ],
+  "refmt": 3
+}

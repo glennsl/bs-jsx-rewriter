@@ -1,0 +1,30 @@
+{
+  "name": "bs-jsx-rewriter",
+  "description": "Bindings to Reason's React JSX PPX",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "build": "bsb -make-world",
+    "webpack": "webpack -w"
+  },
+  "keywords": [
+    "bucklescript",
+    "reason",
+    "react",
+    "jsx",
+    "ppx"
+  ],
+  "author": "glennsl",
+  "license": "MIT",
+  "homepage": "https://github.com/glennsl/bs-jsx-rewriter#readme",
+  "bugs": "https://github.com/glennsl/bs-jsx-rewriter/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glennsl/bs-jsx-rewriter.git"
+  },
+  "devDependencies": {
+    "bs-platform": "^2.1.0",
+    "webpack": "^3.10.0"
+  }
+}
