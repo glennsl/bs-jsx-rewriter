@@ -30,6 +30,10 @@ let _ =
 */
 ```
 
+##Licensing
+
+The vendor directory contains files built from code in the BuckleScript repository, but which originates from the Reason repository, which is licensed under the MIT license. The rest of this repostiory is also licensed under the MIT license.
+
 ## Acknowledgement
 
 [The Reason team](https://github.com/facebook/reason/graphs/contributors) for creating the PPX (and, you know, Reason and all that), and [Alessandro Strada](https://github.com/astrada) for adding the JS API and build process.
