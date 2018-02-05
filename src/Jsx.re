@@ -65,14 +65,18 @@ module InternalResult : {
 [%%raw {|
   function _captureConsoleOutput(f) {
     const capture = (...args) => args.forEach(argument => errors += argument + `\n`);
+
     let errors = "";
     let res;
+
     if ((typeof process !== "undefined") && process.stdout && process.stdout.write) {
       const _stdoutWrite = process.stdout.write; // errors are written to stdout
       const _stderrWrite = process.stderr.write; // warnings are written to stderr ...
       process.stdout.write = capture;
       process.stderr.write = capture;
+
       res = f();
+
       process.stdout.write = _stdoutWrite;
       process.stderr.write = _stderrWrite;
     } else {
@@ -80,10 +84,13 @@ module InternalResult : {
       const _consoleError = console.error; // warnings are written to console.error (at least it's consistently incnsistent)
       console.log = capture;
       console.error = capture;
+
       res = f();
+
       console.log = _consoleLog;
       console.error = _consoleError;
     }
+
     return [res, errors ? [errors] : 0];
   }
 |}];
@@ -91,7 +98,7 @@ module InternalResult : {
 
 [@bs.val] [@bs.scope "jsx"] external rewrite : string => string = "";
 let rewrite = code => {
-  let (json, consoleOutput) = 
+  let (json, _) = 
     _captureConsoleOutput(() =>
       code |> rewrite
     );
