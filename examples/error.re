@@ -8,6 +8,8 @@ let code = {|
 
 let () =
   code |> Jsx.rewrite
-       |> fun | Ok(_) => failwith("unreachable")
-              | Error({ message, from: { line, column } }) =>
-              Js.log({j|Error: $message\nLine $line, column $column|j});
+       |> fun | Ok(_) =>
+                failwith("unreachable")
+
+              | Error(`JsxRewriteError({ Jsx.message, from: { line, column } })) =>
+                Js.log({j|Error: $message\nLine $line, column $column|j});

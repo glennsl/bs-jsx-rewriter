@@ -8,5 +8,5 @@ let code = {|
 
 let () =
   code |> Jsx.rewrite
-       |> fun | Ok({ code }) => Js.log(code)
-              | Error(_) => Js.log("error");
+       |> fun | Ok({ code })  => Js.log(code)
+              | Error(_)      => Js.log("error");

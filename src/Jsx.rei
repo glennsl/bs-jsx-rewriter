@@ -1,6 +1,5 @@
+type success = { code: string };
 type location = { line: int, column: int }
-and  success = { code: string }
-and  error = { message: string, from: location, until: location }
-and  result = Js.Result.t(success, error);
+and  error = { message: string, from: location, until: location };
 
-let rewrite : string => result;
+let rewrite : string => Js.Result.t(success, [> `JsxRewriteError(error)]);

@@ -54,15 +54,18 @@ function rewrite(code) {
   if (match$1 == null) {
     return /* Ok */Block.__(0, [/* record */[/* code */jsObj.ocaml_code]]);
   } else if (match$1 === "error") {
-    return /* Error */Block.__(1, [/* record */[
-                /* message */jsObj.text,
-                /* from : record */[
-                  /* line */jsObj.row,
-                  /* column */jsObj.column
-                ],
-                /* until : record */[
-                  /* line */jsObj.endRow,
-                  /* column */jsObj.endColumn
+    return /* Error */Block.__(1, [/* `JsxRewriteError */[
+                634431979,
+                /* record */[
+                  /* message */jsObj.text,
+                  /* from : record */[
+                    /* line */jsObj.row,
+                    /* column */jsObj.column
+                  ],
+                  /* until : record */[
+                    /* line */jsObj.endRow,
+                    /* column */jsObj.endColumn
+                  ]
                 ]
               ]]);
   } else {

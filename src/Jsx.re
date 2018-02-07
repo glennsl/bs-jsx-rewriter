@@ -5,27 +5,24 @@
   var jsx = global && global.jsxv2 || window.jsxv2;
 |}];
 
-type location = {
-  line: int,
-  column: int
-};
-
 type success = {
   code: string
 };
 
-type error = {
+type location = {
+  line: int,
+  column: int
+}
+and error = {
   message: string,
   from: location,
   until: location
 };
 
-type result = Js.Result.t(success, error);
-
 module InternalResult : {
   type t;
   external unsafeFromJson   : Js.Json.t => t = "%identity";
-  let toResult : t => result;
+  let toResult : t => Js.Result.t(success, [> `JsxRewriteError(error)]);
 } = {
   type t = {.
     "_type":           Js.nullable(string)
@@ -52,11 +49,11 @@ module InternalResult : {
     switch (Js.Nullable.to_opt(jsObj##_type)) {
     | Some("error") => {
         let error = jsObj |> unsafeAsError;
-        Js.Result.Error({
+        Js.Result.Error(`JsxRewriteError({
           message: error##text,
           from: { line: error##row, column: error##column },
           until: { line: error##endRow, column: error##endColumn }
-        })
+        }))
       }
     | _ => Js.Result.Ok({ code: (jsObj |> unsafeAsSuccess)##ocaml_code })
     };
