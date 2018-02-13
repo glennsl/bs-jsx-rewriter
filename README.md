@@ -30,6 +30,21 @@ let _ =
 */
 ```
 
+## Usage
+
+### Bundling
+
+The package has been tested to work with `webpack`, but requires a tiny bit of configuration because it depends on a few
+ndoe modules in code paths that aren't actually used in practice. To stub these out, just put the following in your
+`webpack.config.js`:
+
+```javascript
+  node: {
+    fs: 'empty',
+    child_process: 'empty'
+  }
+```
+
 ##Licensing
 
 The vendor directory contains files built from code in the BuckleScript repository, but which originates from the Reason repository, which is licensed under the MIT license. The rest of this repostiory is also licensed under the MIT license.
